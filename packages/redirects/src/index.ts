@@ -1,8 +1,8 @@
-import type { Config } from 'payload/config'
+import type { Config } from "payload/config";
 
-import type { PluginConfig } from './types'
+import type { PluginConfig } from "./types";
 
-import deepMerge from './deepMerge'
+import deepMerge from "./deepMerge";
 
 const redirects =
   (pluginConfig: PluginConfig) =>
@@ -12,61 +12,63 @@ const redirects =
       ...(incomingConfig?.collections || []),
       deepMerge(
         {
-          slug: 'redirects',
+          slug: "redirects",
           access: {
             read: (): boolean => true,
           },
           admin: {
-            defaultColumns: ['from', 'to.type', 'createdAt'],
+            defaultColumns: ["from", "to.type", "createdAt"],
           },
           fields: [
             {
-              name: 'from',
-              type: 'text',
+              name: "from",
+              type: "text",
               index: true,
-              label: 'From URL',
+              label: "From URL",
               required: true,
             },
             {
-              name: 'to',
-              type: 'group',
+              name: "to",
+              type: "group",
               fields: [
                 {
-                  name: 'type',
-                  type: 'radio',
+                  name: "type",
+                  type: "radio",
                   admin: {
-                    layout: 'horizontal',
+                    layout: "horizontal",
                   },
-                  defaultValue: 'reference',
-                  label: 'To URL Type',
+                  defaultValue: "reference",
+                  label: "To URL Type",
                   options: [
                     {
-                      label: 'Internal link',
-                      value: 'reference',
+                      label: "Internal link",
+                      value: "reference",
                     },
                     {
-                      label: 'Custom URL',
-                      value: 'custom',
+                      label: "Custom URL",
+                      value: "custom",
                     },
                   ],
                 },
                 {
-                  name: 'reference',
-                  type: 'relationship',
+                  name: "reference",
+                  type: "relationship",
                   admin: {
-                    condition: (_, siblingData) => siblingData?.type === 'reference',
+                    condition: (_, siblingData) =>
+                      siblingData?.type === "reference",
                   },
-                  label: 'Document to redirect to',
+                  label: "Document to redirect to",
                   relationTo: pluginConfig?.collections || [],
                   required: true,
                 },
                 {
-                  name: 'url',
-                  type: 'text',
+                  name: "url",
+                  type: "text",
                   admin: {
-                    condition: (_, siblingData) => siblingData?.type === 'custom',
+                    condition: (_, siblingData) =>
+                      siblingData?.type === "custom",
                   },
-                  label: 'Custom URL',
+                  label: "Custom URL",
                   required: true,
                 },
               ],
@@ -74,9 +76,9 @@ const redirects =
             },
           ],
         },
-        pluginConfig?.overrides || {},
+        pluginConfig?.overrides || {}
       ),
     ],
-  })
+  });
 
-export default redirects
+export default redirects;

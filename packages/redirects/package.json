@@ -1,6 +1,6 @@
 {
-  "name": "@extropysk/payload-plugin-redirects",
-  "version": "1.0.2",
+  "name": "@extropysk/payload-redirects",
+  "version": "0.0.1",
   "homepage:": "https://payloadcms.com",
   "repository": {
     "type": "git",
@@ -16,7 +16,8 @@
     "build:types": "tsc --emitDeclarationOnly --outDir dist",
     "clean": "rimraf {dist,*.tsbuildinfo}",
     "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png,json}\" dist/",
-    "prepublishOnly": "pnpm clean && pnpm build"
+    "prepublishOnly": "pnpm clean && pnpm build",
+    "dev": "nodemon --config nodemon.json"
   },
   "keywords": [
     "payload",
