@@ -1,0 +1,8 @@
+{
+  "watch": ["src"],
+  "ext": "ts,tsx,js,json,css,scss,html",
+  "execMap": {
+    "ts": "pnpm build:swc"
+  },
+  "exec": "pnpm build:swc & pnpm build:types & pnpm copyfiles"
+}
